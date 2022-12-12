@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RestoranTablesService.Classes
+namespace RestaurantTablesService.Classes
 {
     public class Order
     {
@@ -12,7 +12,7 @@ namespace RestoranTablesService.Classes
         public int TableID { get; set; }
         public int PersonCount { get; set; }
         public List<int> FoodIDList { get; set; }
-        public List<int> DrinkIDList{ get; set; }
+        public List<int> DrinkIDList { get; set; }
         public Order(int orderID, int tableID, int personCount, List<int> foodIDList, List<int> drinkIDList)
         {
             OrderID = orderID;

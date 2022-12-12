@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RestoranTablesService.Classes;
+using RestaurantTablesService.Classes;
 
-namespace RestoranTablesService.Repositories
+namespace RestaurantTablesService.Repositories
 {
     public class TablesRepository
     {

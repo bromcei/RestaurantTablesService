@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RestoranTablesService.Classes
+namespace RestaurantTablesService.Classes
 {
     public class Drink
     {
@@ -13,7 +13,7 @@ namespace RestoranTablesService.Classes
         public double DrinkPrice { get; set; }
         public double DrinkPrimePrice { get; set; }
 
-        public Drink(int drinkID, string drinkName,  double drinkPrice, double drinkPrimePrice)
+        public Drink(int drinkID, string drinkName, double drinkPrice, double drinkPrimePrice)
         {
             DrinkID = drinkID;
             DrinkName = drinkName;

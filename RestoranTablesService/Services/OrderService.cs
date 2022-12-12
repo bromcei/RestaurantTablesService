@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RestoranTablesService.Services
+namespace RestaurantTablesService.Services
 {
-    internal class OrderService
+    public class OrderService
     {
     }
 }
