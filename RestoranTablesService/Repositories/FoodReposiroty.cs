@@ -16,7 +16,7 @@ namespace RestaurantTablesService.Repositories
         public string FilePath { get; }
         public FoodReposiroty()
         {
-            FilePath = "C:\\Users\\tomas.ceida\\source\\repos\\RestoranTablesService\\RestoranTablesService\\Data\\FoodMenu.json";
+            FilePath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\Data\\FoodMenu.json";
             string jsonString = File.ReadAllText(FilePath);
             FoodList = JsonSerializer.Deserialize<List<Food>>(jsonString);
         }
@@ -28,6 +28,20 @@ namespace RestaurantTablesService.Repositories
         public Food Retrieve(int foodID)
         {
             return FoodList.Where(item => item.FoodID == foodID).FirstOrDefault();
+        }
+        public bool WriteToFile()
+        {
+            try
+            {
+                string json_output = JsonSerializer.Serialize(FoodList);
+                File.WriteAllText(FilePath, json_output);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
         }
 
     }
