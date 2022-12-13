@@ -60,9 +60,9 @@ namespace RestaurantTablesService.Repositories
         }
         public bool OccupyTable(int tableID, int personCount)
         {
-            OccupiedTable newReservation = new OccupiedTable(tableID, DateTime.Now, personCount);
-            OccupiedTablesList.Add(newReservation);
-            WriteToFile();
+            //OccupiedTable newReservation = new OccupiedTable(tableID, DateTime.Now, personCount);
+            //OccupiedTablesList.Add(newReservation);
+            //WriteToFile();
             return true;
         }
     }
