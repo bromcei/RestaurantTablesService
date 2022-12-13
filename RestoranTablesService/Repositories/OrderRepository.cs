@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using RestaurantTablesService.Classes;
 
 namespace RestaurantTablesService.Repositories
 {
@@ -34,6 +35,14 @@ namespace RestaurantTablesService.Repositories
                 Console.WriteLine(e);
 
             }            
+        }
+        public List<Order> Retrieve()
+        {
+            return OrderList;
+        }
+        public Order Retrieve(int orderID)
+        {
+            return OrderList.Where(order => order.OrderID == orderID).SingleOrDefault();
         }
     }
     

@@ -58,6 +58,17 @@ namespace RestaurantTablesService.Repositories
                 return false;
             }
         }
+        public bool IsTableFree(int tableID)
+        {
+            if(OccupiedTablesList.Where(table => table.TableID == tableID && table.IsOccupied == true).ToList().Count() > 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
         public bool OccupyTable(int tableID, int personCount)
         {
             //OccupiedTable newReservation = new OccupiedTable(tableID, DateTime.Now, personCount);

@@ -35,5 +35,10 @@ namespace RestaurantTablesService.Repositories
 
             }
         }
+        public List<Check> Retrieve()
+        {
+            return CheckList;
+        }
+        public <Check>
     }
 }

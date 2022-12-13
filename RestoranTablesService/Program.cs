@@ -25,4 +25,11 @@ Console.WriteLine(projectDirectory);
 */
 
 
+OrderRepository Orders = new OrderRepository("prod");
+
+Console.WriteLine(Orders.Retrieve(2));
+
+
+
+
 
