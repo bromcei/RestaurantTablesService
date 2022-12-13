@@ -12,10 +12,20 @@ namespace RestaurantTablesService.Repositories
     {
         public List<Drink> DrinkList { get; set; }
         public string FilePath { get; }
-        public DrinkRepository()
+        public string Env { get; set; }
+        public DrinkRepository(string env)
         {
+            Env = env;
+            if (env == "prod")
+            {
+                FilePath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\Data\\Prod\\DrinkMenu.json";
+            }
+            else
+            {
+                FilePath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\Data\\Test\\DrinkMenu.json";
+            }
             //FilePath = "C:\\Users\\tomas.ceida\\source\\repos\\RestoranTablesService\\RestoranTablesService\\Data\\DrinkMenu.json";
-            FilePath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\Data\\DrinkMenu.json";
+            
             try
             {
                 string jsonString = File.ReadAllText(FilePath);
@@ -26,7 +36,7 @@ namespace RestaurantTablesService.Repositories
                 Console.WriteLine(e);
 
             }
-
+            Env = env;
         }
         public List<Drink> Retrieve()
         {

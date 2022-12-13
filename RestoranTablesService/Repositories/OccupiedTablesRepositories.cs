@@ -12,9 +12,19 @@ namespace RestaurantTablesService.Repositories
     {
         public List<OccupiedTable> OccupiedTablesList { get; set; }
         public string FilePath { get; }
-        public OccupiedTablesRepositories()
+        public string Env { get; set; }
+        public OccupiedTablesRepositories(string env)
         {
-            FilePath = FilePath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\Data\\OccupiedTables.json";
+            Env = env;
+            if (Env == "prod")
+            {
+                FilePath = FilePath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\Data\\Prod\\OccupiedTables.json";
+            }
+            else
+            {
+                FilePath = FilePath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\Data\\Test\\OccupiedTables.json";
+            }
+            
             try
             {
                 string jsonString = File.ReadAllText(FilePath);
@@ -47,6 +57,13 @@ namespace RestaurantTablesService.Repositories
                 Console.WriteLine(e.Message);
                 return false;
             }
+        }
+        public bool OccupyTable(int tableID, int personCount)
+        {
+            OccupiedTable newReservation = new OccupiedTable(tableID, DateTime.Now, personCount);
+            OccupiedTablesList.Add(newReservation);
+            WriteToFile();
+            return true;
         }
     }
     

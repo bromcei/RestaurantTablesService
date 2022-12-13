@@ -14,11 +14,22 @@ namespace RestaurantTablesService.Repositories
     {
         public List<Food> FoodList { get; set; }
         public string FilePath { get; }
-        public FoodReposiroty()
+        public string Env { get; set; }
+        public FoodReposiroty(string env)
         {
-            FilePath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\Data\\FoodMenu.json";
+            Env = env;
+            if (Env == "prod")
+            {
+                FilePath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\Data\\Prod\\FoodMenu.json";
+            }
+            else
+            {
+                FilePath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\Data\\Test\\FoodMenu.json";
+            }
+            
             string jsonString = File.ReadAllText(FilePath);
             FoodList = JsonSerializer.Deserialize<List<Food>>(jsonString);
+            Env = env;
         }
         public List<Food> Retrieve()
         {

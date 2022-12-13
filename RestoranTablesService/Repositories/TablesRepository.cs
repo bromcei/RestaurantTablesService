@@ -12,9 +12,19 @@ namespace RestaurantTablesService.Repositories
     {
         public string FilePath { get; }
         public List<Table> TableList { get; set; }
-        public TablesRepository()
+        public string Env { get;}
+        public TablesRepository(string env)
         {
-            FilePath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\Data\\Tables.json";
+            Env = env;
+            if(Env == "prod")
+            {
+                FilePath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\Data\\Prod\\Tables.json";
+            }
+            else
+            {
+                FilePath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\Data\\Test\\Tables.json";
+            }
+            
             
             try
             {

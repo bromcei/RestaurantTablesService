@@ -1,0 +1,26 @@
+[
+  {
+    "FoodID": 1,
+    "FoodName": "Didelis kebabas lavase",
+    "FoodPrice": 5.95,
+    "FoodPrimeCost": 2.1
+  },
+  {
+    "FoodID": 2,
+    "FoodName": "Mazas kebabas lavase",
+    "FoodPrice": 4.95,
+    "FoodPrimeCost": 1.9
+  },
+  {
+    "FoodID":3,
+    "FoodName": "Bulvytes",
+    "FoodPrice": 3.2,
+    "FoodPrimeCost": 1.75
+  },
+  {
+    "FoodID": 4,
+    "FoodName": "Kijievo kotletas",
+    "FoodPrice": 7.95,
+    "FoodPrimeCost": 3.9
+  }
+]
