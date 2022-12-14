@@ -21,7 +21,7 @@ namespace RestaurantTablesService.Classes
             PersonCount = personCount;
             FoodIDList = foodIDList;
             DrinkIDList = drinkIDList;
-            CheckedOut = true;
+            CheckedOut = false;
         }
     }
 
