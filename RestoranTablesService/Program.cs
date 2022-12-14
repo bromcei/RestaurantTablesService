@@ -3,33 +3,27 @@ using System.Text.Json;
 using RestaurantTablesService.Repositories;
 using RestaurantTablesService.Classes;
 
-/*
-string FilePath = "C:\\Users\\tomas.ceida\\source\\repos\\RestoranTablesService\\RestoranTablesService\\Data\\FoodMenu.json";
-string json_output = File.ReadAllText(FilePath);
-List<Food> FoodList = JsonSerializer.Deserialize<List<Food>>(jsonString);
-*/
+OccupiedTablesRepositories OccTables = new OccupiedTablesRepositories("prod");
+DrinkRepository Drinks = new DrinkRepository("prod");
 
-Order orederTest = new Order(1, 1, 2, new List<int>() { 1, 2, 3 }, new List<int>() { 4, });
-Console.WriteLine(JsonSerializer.Serialize(orederTest));
-/*
-FoodReposiroty menu = new FoodReposiroty();
-DrinkRepository drinks = new DrinkRepository();
-*/
-//Console.WriteLine(FoodList[0].FoodName);
+Console.WriteLine(OccTables.IsTableFree(1));
 
 /*
-string workingDirectory = Environment.CurrentDirectory;
-string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
+int maxID = OccTables.OccupiedTablesList.Max(table => table.OccupiedTableID);
 
-Console.WriteLine(projectDirectory);
+Console.WriteLine(maxID);
 */
 
 
-OrderRepository Orders = new OrderRepository("prod");
+var list1 = new List<int>() { 1, 2, 3, 4, 5 };
+var list2 = new List<int>() { 1, 3, 5, 7, 9 };
 
-Console.WriteLine(Orders.Retrieve(2));
+// Use the Intersect method to get the intersection of the two lists.
+var result = list1.Intersect(list2);
 
 
-
-
-
+List<int> res1 = Drinks.Retrieve().Select(drink => drink.DrinkID).ToList();
+foreach(var item in res1)
+{
+    Console.WriteLine(item);
+}

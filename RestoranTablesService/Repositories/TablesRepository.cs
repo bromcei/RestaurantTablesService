@@ -51,5 +51,13 @@ namespace RestaurantTablesService.Repositories
                 return false;
             }
         }
+        public List<Table> Retrieve()
+        {
+            return TableList;
+        }
+        public Table Retrieve(int tableID)
+        {
+            return TableList.Where(table => table.TabledID == tableID).FirstOrDefault();
+        }
     }
 }

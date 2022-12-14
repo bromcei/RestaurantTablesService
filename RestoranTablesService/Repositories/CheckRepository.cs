@@ -39,6 +39,41 @@ namespace RestaurantTablesService.Repositories
         {
             return CheckList;
         }
-        public <Check>
+        public bool WriteToFile()
+        {
+            try
+            {
+                string json_output = JsonSerializer.Serialize(CheckList);
+                File.WriteAllText(FilePath, json_output);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
+        public int NextCheckID()
+        {
+
+            if (CheckList != null)
+            {
+                int maxID = CheckList.Max(check => check.CheckID);
+                return maxID + 1;
+            }
+            else
+            {
+                return 1;
+            }
+
+        }
+
+        public bool NewCheck(Check check)
+        {
+            CheckList.Add(check);
+            WriteToFile();
+            return true;
+        }
+
     }
 }

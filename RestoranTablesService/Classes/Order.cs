@@ -9,14 +9,14 @@ namespace RestaurantTablesService.Classes
     public class Order
     {
         public int OrderID { get; set; }
-        public int TableID { get; set; }
+        public int OccupiedTableID { get; set; }
         public int PersonCount { get; set; }
         public List<int> FoodIDList { get; set; }
         public List<int> DrinkIDList { get; set; }
-        public Order(int orderID, int tableID, int personCount, List<int> foodIDList, List<int> drinkIDList)
+        public Order(int orderID, int occupiedTableID, int personCount, List<int> foodIDList, List<int> drinkIDList)
         {
             OrderID = orderID;
-            TableID = tableID;
+            OccupiedTableID = occupiedTableID;
             PersonCount = personCount;
             FoodIDList = foodIDList;
             DrinkIDList = drinkIDList;

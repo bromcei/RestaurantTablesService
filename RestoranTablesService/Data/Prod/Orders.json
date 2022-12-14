@@ -1,7 +1,7 @@
 [
   {
     "OrderID": 1,
-    "TableID": 1,
+    "OccupiedTableID": 1,
     "PersonCount": 2,
     "FoodIDList": [ 1, 2, 3 ],
     "DrinkIDList": [ 2 ]
