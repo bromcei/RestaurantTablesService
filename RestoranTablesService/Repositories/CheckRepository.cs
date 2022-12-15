@@ -39,6 +39,14 @@ namespace RestaurantTablesService.Repositories
         {
             return CheckList;
         }
+        public Check Retrieve(int checkID)
+        {
+            return CheckList.Where(check => check.CheckID == checkID).SingleOrDefault(); 
+        }
+        public Check RetrieveByOrderID(int orderID)
+        {
+            return CheckList.Where(check => check.OrderID == orderID).SingleOrDefault();
+        }
         public bool WriteToFile()
         {
             try

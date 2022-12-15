@@ -10,10 +10,10 @@ namespace RestaurantTablesService.Classes
     {
         public int FoodID { get; set; }
         public string FoodName { get; set; }
-        public double FoodPrice { get; set; }
-        public double FoodPrimeCost { get; set; }
+        public decimal FoodPrice { get; set; }
+        public decimal FoodPrimeCost { get; set; }
 
-        public Food(int foodID, string foodName, double foodPrice, double foodPrimeCost)
+        public Food(int foodID, string foodName, decimal foodPrice, decimal foodPrimeCost)
         {
             FoodID = foodID;
             FoodName = foodName;

@@ -36,7 +36,7 @@ namespace RestaurantTablesService.Services
         }
         public bool SetTableFree(int tableID)
         {
-            if (Tables.Retrieve(tableID) != null)
+            if (Tables.Retrieve(tableID) != null && OccupiedTables.IsTableFree(tableID) == false)
             {
                 return OccupiedTables.SetTableFree(tableID);
             }

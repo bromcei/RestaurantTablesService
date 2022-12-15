@@ -14,7 +14,6 @@ namespace RestaurantTablesService.Classes
         public DateTime DateTime { get; set; }
         public int PersonCount { get; set; }
         public int? OrderID { get; set; }
-        public int? CheckOutID { get; set; }
         public bool IsOccupied { get; set; }    
         public OccupiedTable(int occupiedTableID, int tableID, DateTime dateTime, int personCount)
         {
@@ -23,7 +22,7 @@ namespace RestaurantTablesService.Classes
             DateTime = dateTime;
             PersonCount = personCount;
             OrderID = null;
-            CheckOutID = null;
+
             IsOccupied = true;
         }
         public bool FreeTable()
@@ -34,11 +33,6 @@ namespace RestaurantTablesService.Classes
         public bool AssignOrder(int orderID)
         {
             OrderID = orderID;
-            return true;
-        }
-        public bool AssignCheckout(int checkOutID)
-        {
-            CheckOutID = checkOutID;
             return true;
         }
     }
