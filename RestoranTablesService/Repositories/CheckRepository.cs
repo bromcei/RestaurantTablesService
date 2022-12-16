@@ -27,7 +27,15 @@ namespace RestaurantTablesService.Repositories
             try
             {
                 string jsonString = File.ReadAllText(FilePath);
-                CheckList = JsonSerializer.Deserialize<List<Check>>(jsonString);
+                if (jsonString.Length == 0)
+                {
+                    CheckList = new List<Check>();
+                }
+                else
+                {
+                    CheckList = JsonSerializer.Deserialize<List<Check>>(jsonString);
+                }
+            
             }
             catch (Exception e)
             {
@@ -64,7 +72,7 @@ namespace RestaurantTablesService.Repositories
         public int NextCheckID()
         {
 
-            if (CheckList != null)
+            if (CheckList.Count > 0)
             {
                 int maxID = CheckList.Max(check => check.CheckID);
                 return maxID + 1;

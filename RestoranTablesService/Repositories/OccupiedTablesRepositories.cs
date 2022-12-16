@@ -27,18 +27,19 @@ namespace RestaurantTablesService.Repositories
                 FilePath = FilePath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\Data\\Test\\OccupiedTables.json";
             }
             
-            try
-            {
-                string jsonString = File.ReadAllText(FilePath);
 
-                    OccupiedTablesList = JsonSerializer.Deserialize<List<OccupiedTable>>(jsonString);
-                
-            }
-            catch (Exception e)
+            string jsonString = File.ReadAllText(FilePath);
+            if (jsonString.Length == 0)
             {
-                Console.WriteLine(e);
-
+                OccupiedTablesList = new List<OccupiedTable>();
             }
+            else
+            {
+                OccupiedTablesList = JsonSerializer.Deserialize<List<OccupiedTable>>(jsonString);
+            }
+
+            
+             
         }
         public List<OccupiedTable> Retrieve()
         {
@@ -46,8 +47,10 @@ namespace RestaurantTablesService.Repositories
         }
         public OccupiedTable Retrieve(int tableID)
         {
-            return OccupiedTablesList.Where(table => table.TableID == tableID).FirstOrDefault();
+            return OccupiedTablesList.Where(table => table.TableID == tableID && table.IsOccupied == true).FirstOrDefault();
         }
+
+
         public bool WriteToFile()
         {
             try
@@ -76,7 +79,7 @@ namespace RestaurantTablesService.Repositories
         public int NextOccupiedTableID()
         {
             
-            if (OccupiedTablesList != null)
+            if (OccupiedTablesList.Count > 0)
             {
                 int maxID = OccupiedTablesList.Max(table => table.OccupiedTableID);
                 return maxID + 1;
@@ -106,7 +109,7 @@ namespace RestaurantTablesService.Repositories
             }
             */
         }
-        public bool SetTableFree(int tableID)
+        public bool SetTableFreeByTableID(int tableID)
         {
             if (IsTableFree(tableID))
             {
@@ -120,6 +123,21 @@ namespace RestaurantTablesService.Repositories
             }
             
         }
+        public bool SetTableFreeByOccupiedTableID(int occupiedTableID)
+        {
+            int tableID = OccupiedTablesList.Where(table => table.OccupiedTableID == occupiedTableID).FirstOrDefault().TableID;
+            SetTableFreeByTableID(tableID);
+            return true;
+
+        }
+        public bool AssignOrderID(int tableID, int orderID)
+        {
+            OccupiedTable table = Retrieve(tableID);
+            table.OrderID = orderID;
+            WriteToFile();
+            return true;
+        }
+
     }
     
 }

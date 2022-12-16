@@ -20,10 +20,10 @@ namespace RestaurantTablesService.Classes
         public decimal TotalPrimeCost { get; }
         public string ClientEmail { get; set; }
         public DateTime CheckDate { get; set; }
-        public Check(int checkID, int tableID, int personCount, List<int> foodIDList, List<int> drinkIDList, decimal totalPayment,  decimal totalPrimeCost, string clientEmail)
+        public Check(int checkID, int orderID, int personCount, List<int> foodIDList, List<int> drinkIDList, decimal totalPayment,  decimal totalPrimeCost, string clientEmail)
         {
             CheckID = checkID;
-            TableID = tableID;
+            OrderID = orderID;
             PersonCount = personCount;
             FoodIDList = foodIDList;
             DrinkIDList = drinkIDList;

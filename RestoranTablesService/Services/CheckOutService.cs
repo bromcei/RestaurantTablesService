@@ -27,8 +27,18 @@ namespace RestaurantTablesService.Services
             Orders = new OrderRepository(Env);
             Checks = new CheckRepository(Env);
         }
-        public void NewCheckOut(int orderID, string clientEmail)
+        public void DataRefresh()
         {
+            Drinks = new DrinkRepository(Env);
+            Foods = new FoodReposiroty(Env);
+            OccupiedTables = new OccupiedTablesRepositories(Env);
+            Orders = new OrderRepository(Env);
+            Checks = new CheckRepository(Env);
+        }
+
+        public decimal TotalOrderSum(int orderID)
+        {
+            DataRefresh();
             Order orderToCheckOut = Orders.Retrieve(orderID);
             int newCheckID = Checks.NextCheckID();
             List<Food> orderedFood = new List<Food>();
@@ -39,16 +49,71 @@ namespace RestaurantTablesService.Services
             }
             foreach (int drinkID in orderToCheckOut.DrinkIDList)
             {
-                orderedDrinks.Add(Drinks.Retrieve(drinkID));    
+                orderedDrinks.Add(Drinks.Retrieve(drinkID));
             }
-            decimal totalOrderSum = orderedFood.Select(order => order.FoodPrice).ToList().Sum() + orderedDrinks.Select(order => order.DrinkPrice).ToList().Sum();
-            decimal totalOrderPrimeSum = orderedFood.Select(order => order.FoodPrimeCost).ToList().Sum() + orderedDrinks.Select(order => order.DrinkPrimePrice).ToList().Sum();
+            return orderedFood.Select(order => order.FoodPrice).ToList().Sum() + orderedDrinks.Select(order => order.DrinkPrice).ToList().Sum();
+        }
+        public decimal TotalOrderPrimeSum(int orderID)
+        {
+            DataRefresh();
+            Order orderToCheckOut = Orders.Retrieve(orderID);
+            int newCheckID = Checks.NextCheckID();
+            List<Food> orderedFood = new List<Food>();
+            List<Drink> orderedDrinks = new List<Drink>();
+            foreach (int foodID in orderToCheckOut.FoodIDList)
+            {
+                orderedFood.Add(Foods.Retrieve(foodID));
+            }
+            foreach (int drinkID in orderToCheckOut.DrinkIDList)
+            {
+                orderedDrinks.Add(Drinks.Retrieve(drinkID));
+            }
+            return orderedFood.Select(order => order.FoodPrimeCost).ToList().Sum() + orderedDrinks.Select(order => order.DrinkPrimePrice).ToList().Sum();
 
-            Check newCheck = new Check(newCheckID, orderID, orderToCheckOut.PersonCount, orderToCheckOut.FoodIDList, orderToCheckOut.DrinkIDList, totalOrderSum, totalOrderPrimeSum, clientEmail);
-            Checks.NewCheck(newCheck);
-            orderToCheckOut.CheckedOut = true;
-            Orders.WriteToFile();
-            //https://social.msdn.microsoft.com/Forums/en-US/1eca3fdd-8669-40de-a9d9-0e0164c88772/get-list-by-ids?forum=aspgettingstarted
+        }
+        public void NewCheckOut(int orderID, string clientEmail)
+        {
+            DataRefresh();
+            if (orderID != -1)
+            {
+                Order orderToCheckOut = Orders.Retrieve(orderID);
+                int newCheckID = Checks.NextCheckID();
+                decimal totalOrderSum = TotalOrderSum(orderID);
+                decimal totalOrderPrimeSum = TotalOrderPrimeSum(orderID); ;
+
+                Check newCheck = new Check(newCheckID, orderID, orderToCheckOut.PersonCount, orderToCheckOut.FoodIDList, orderToCheckOut.DrinkIDList, totalOrderSum, totalOrderPrimeSum, clientEmail);
+                Checks.NewCheck(newCheck);
+                orderToCheckOut.CheckedOut = true;
+                OccupiedTables.SetTableFreeByOccupiedTableID(orderToCheckOut.OccupiedTableID);
+                Orders.WriteToFile();
+                DataRefresh();
+            }
+
+        }
+        public void NewCheckOutByTable(int tableID, string clientEmail)
+        {
+            DataRefresh();
+            
+            try
+            {
+                OccupiedTable tableTocheckOut = OccupiedTables.Retrieve(tableID);
+                int orderID = (int)tableTocheckOut.OrderID;
+                int newCheckID = Checks.NextCheckID();
+                Order orderToCheckOut = Orders.Retrieve(orderID);
+                decimal totalOrderSum = TotalOrderSum(orderID);
+                decimal totalOrderPrimeSum = TotalOrderPrimeSum(orderID); ;
+
+                Check newCheck = new Check(newCheckID, orderID, tableTocheckOut.PersonCount, orderToCheckOut.FoodIDList, orderToCheckOut.DrinkIDList, totalOrderSum, totalOrderPrimeSum, clientEmail);
+                Checks.NewCheck(newCheck);
+                orderToCheckOut.CheckedOut = true;
+                Orders.WriteToFile();
+                DataRefresh();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);           
+            }
+
         }
     }
 }

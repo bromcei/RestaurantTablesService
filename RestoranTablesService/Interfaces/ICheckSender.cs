@@ -10,6 +10,6 @@ namespace RestaurantTablesService.Interfaces
     {
 
         string CheckPrint(int orderID);
-        void CheckSend(int orderID, string emailAddress);
+        void CheckSend(int orderID);
     }
 }

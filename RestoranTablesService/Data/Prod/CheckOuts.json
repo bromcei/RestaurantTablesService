@@ -1,3 +1,28 @@
 [
-  {}
+  {
+    "CheckID": 1,
+    "OrderID": 1,
+    "TableID": 0,
+    "PersonCount": 2,
+    "FoodIDList": [ 1, 1 ],
+    "DrinkIDList": [ 2, 2 ],
+    "TotalPayment": 17.10,
+    "TotalPaymentBeforeTax": 14.132231404958677685950413223,
+    "TotalPrimeCost": 6.0,
+    "ClientEmail": "test@gmail.com",
+    "CheckDate": "2022-12-16T14:17:10.6679356+02:00"
+  },
+  {
+    "CheckID": 2,
+    "OrderID": 2,
+    "TableID": 0,
+    "PersonCount": 2,
+    "FoodIDList": [ 3, 2, 4 ],
+    "DrinkIDList": [],
+    "TotalPayment": 16.10,
+    "TotalPaymentBeforeTax": 13.305785123966942148760330579,
+    "TotalPrimeCost": 7.55,
+    "ClientEmail": "alio@gmail.com",
+    "CheckDate": "2022-12-16T14:25:28.6348166+02:00"
+  }
 ]

@@ -27,16 +27,19 @@ namespace RestaurantTablesService.Repositories
             {
                 FilePath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\Data\\Test\\Orders.json";
             }
-            try
+
+             string jsonString = File.ReadAllText(FilePath);
+            if (jsonString.Length == 0)
             {
-                string jsonString = File.ReadAllText(FilePath);
+                OrderList = new List<Order>();
+            }
+            else
+            {
                 OrderList = JsonSerializer.Deserialize<List<Order>>(jsonString);
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-
-            }            
+            
+           
+           
         }
         public List<Order> Retrieve()
         {
@@ -63,7 +66,7 @@ namespace RestaurantTablesService.Repositories
         public int NextOrderID()
         {
 
-            if (OrderList != null)
+            if (OrderList.Count > 0)
             {
                 int maxID = OrderList.Max(order => order.OrderID);
                 return maxID + 1;

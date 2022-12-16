@@ -25,17 +25,19 @@ namespace RestaurantTablesService.Repositories
                 FilePath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\Data\\Test\\Tables.json";
             }
             
+           
+            string jsonString = File.ReadAllText(FilePath);
             
-            try
+            if (jsonString.Length == 0)
             {
-                string jsonString = File.ReadAllText(FilePath);
-                TableList = JsonSerializer.Deserialize<List<Table>>(jsonString);
+                TableList = new List<Table>();
             }
-            catch (Exception e)
+            else
             {
-                Console.WriteLine(e);
+                TableList = JsonSerializer.Deserialize<List<Table>>(jsonString); ;
+            }
 
-            }
+
         }
         public bool WriteToFile()
         {

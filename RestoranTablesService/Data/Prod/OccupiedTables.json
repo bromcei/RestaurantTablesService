@@ -1,3 +1,18 @@
 [
-  {}
+  {
+    "OccupiedTableID": 1,
+    "TableID": 1,
+    "DateTime": "2022-12-16T14:17:05.9214463+02:00",
+    "PersonCount": 2,
+    "OrderID": 1,
+    "IsOccupied": false
+  },
+  {
+    "OccupiedTableID": 2,
+    "TableID": 1,
+    "DateTime": "2022-12-16T14:24:01.9551038+02:00",
+    "PersonCount": 2,
+    "OrderID": 2,
+    "IsOccupied": false
+  }
 ]

@@ -28,8 +28,15 @@ namespace RestaurantTablesService.Repositories
             }
             
             string jsonString = File.ReadAllText(FilePath);
-            FoodList = JsonSerializer.Deserialize<List<Food>>(jsonString);
-            Env = env;
+            if (jsonString.Length == 0)
+            {
+                FoodList = new List<Food>();
+            }
+            else
+            {
+                FoodList = JsonSerializer.Deserialize<List<Food>>(jsonString);
+            }
+            
         }
         public List<Food> Retrieve()
         {

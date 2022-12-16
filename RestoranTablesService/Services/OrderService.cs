@@ -25,15 +25,25 @@ namespace RestaurantTablesService.Services
             Orders = new OrderRepository(Env);  
         
         }
+        public void DataRefresh()
+        {
+            Foods = new FoodReposiroty(Env);
+            Drinks = new DrinkRepository(Env);
+            OccupiedTables = new OccupiedTablesRepositories(Env);
+            Orders = new OrderRepository(Env);
+        }
         public bool NewOrderToTable(int tableID, List<int> foodIDList, List<int> drinkIDList)
         {
+            DataRefresh();
             OccupiedTable occTable = OccupiedTables.Retrieve(tableID);
               
             if (occTable != null)
             {
                 int newOrderID = Orders.NextOrderID();
                 Order newOrder = new Order(newOrderID, occTable.OccupiedTableID, occTable.PersonCount, foodIDList, drinkIDList);
+                OccupiedTables.AssignOrderID(tableID, newOrderID);
                 Orders.NewOrder(newOrder);
+                DataRefresh();
                 return true;
             }
             else
@@ -43,6 +53,7 @@ namespace RestaurantTablesService.Services
         }
         public bool AddFoodsToTable(int tableID, List<int> foodIDList)
         {
+            DataRefresh();
             OccupiedTable occTable = OccupiedTables.Retrieve(tableID);
 
             if (occTable != null && occTable.OrderID != null)
@@ -50,6 +61,7 @@ namespace RestaurantTablesService.Services
                 Order order = Orders.Retrieve((int)occTable.OrderID);
                 order.FoodIDList.AddRange(foodIDList);
                 Orders.WriteToFile();
+                DataRefresh();
                 return true;
             }
             else
@@ -59,14 +71,15 @@ namespace RestaurantTablesService.Services
         }
         public bool AddDrinksToTable(int tableID, List<int> drinkIDList)
         {
+            DataRefresh();
             OccupiedTable occTable = OccupiedTables.Retrieve(tableID);
-            List<int> posibleDrinkIDLIst = Drinks.Retrieve().Select(drink => drink.DrinkID).ToList();
-            List<int> drinkIDsToAdd = (List<int>)drinkIDList.Intersect(posibleDrinkIDLIst);
+
             if (occTable != null && occTable.OrderID != null)
             {
                 Order order = Orders.Retrieve((int)occTable.OrderID);
-                order.DrinkIDList.AddRange(drinkIDsToAdd);
+                order.DrinkIDList.AddRange(drinkIDList);
                 Orders.WriteToFile();
+                DataRefresh();
                 return true;
             }
             else
