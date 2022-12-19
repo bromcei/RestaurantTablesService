@@ -60,6 +60,26 @@ namespace UnitTests
         }
 
     }
+    public class FoodRepositoryTests
+    {
+        [Fact]
+        public void FoodRepositoryTest1()
+        {
+            // Arrange
+            FoodReposiroty foods = new FoodReposiroty("test");
+
+            decimal expectedPrice = 7.95m;
+            string expectedName = "Kijievo kotletas Test";
+            // Act
+
+            decimal foodPrice = foods.Retrieve(4).FoodPrice;
+            string foodName = foods.Retrieve(4).FoodName;
+            // Assert
+            Assert.Equal(expectedPrice, foodPrice);
+            Assert.Equal(expectedName, foodName);
+        }
+
+    }
 
     // Service tests
     public class CheckOutServiceTests
