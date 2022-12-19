@@ -25,6 +25,20 @@ namespace RestaurantTablesService.Services
             Tables = new TablesRepository(Env);
             OccupiedTables = new OccupiedTablesRepositories(Env);
         }
+
+        public List<Table> ListFreeTables()
+        {
+            DataRefresh();
+            List<Table> freeTables = new List<Table>();
+            foreach (int tableID in Tables.TableList.Select(table => table.TableID).ToList())
+            {
+                if (OccupiedTables.IsTableFree(tableID))
+                {
+                    freeTables.Add(Tables.Retrieve(tableID));
+                }
+            }
+            return freeTables;
+        }
         public bool OccupieTable(int tableID, int personCount)
         {
             DataRefresh();

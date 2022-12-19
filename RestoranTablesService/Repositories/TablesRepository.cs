@@ -59,7 +59,7 @@ namespace RestaurantTablesService.Repositories
         }
         public Table Retrieve(int tableID)
         {
-            return TableList.Where(table => table.TabledID == tableID).FirstOrDefault();
+            return TableList.Where(table => table.TableID == tableID).FirstOrDefault();
         }
     }
 }
