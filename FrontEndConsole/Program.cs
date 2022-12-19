@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
+
 using RestaurantTablesService.Services;
-/*
+
 string env = "prod";
 OccupyTableService TableSitter = new OccupyTableService(env);
 OrderService OrderService = new OrderService(env);
@@ -28,8 +29,4 @@ SendCheckCompanyService.CheckSend(orderID);
 Console.WriteLine("Check Send");
 
 
-//TableSitter.OccupieTable(1, 2);
-OrderService.NewOrderToTable(1, new List<int>() { 3, 2, 4 }, new List<int>());
-int orderID = TableSitter.RetrieveOrderID(1);
-CheckOutService.NewCheckOut(orderID, "alio@gmail.com");
-*/
+

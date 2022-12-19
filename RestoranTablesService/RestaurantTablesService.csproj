@@ -7,9 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Reports\ClientChecks\" />
-    <Folder Include="Reports\CompanyChecks\" />
-  </ItemGroup>
-
 </Project>

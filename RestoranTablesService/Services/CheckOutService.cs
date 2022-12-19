@@ -38,6 +38,7 @@ namespace RestaurantTablesService.Services
 
         public decimal TotalOrderSum(int orderID)
         {
+            //Calculate total order sum
             DataRefresh();
             Order orderToCheckOut = Orders.Retrieve(orderID);
             int newCheckID = Checks.NextCheckID();
@@ -55,6 +56,7 @@ namespace RestaurantTablesService.Services
         }
         public decimal TotalOrderPrimeSum(int orderID)
         {
+            //Calculates total order prime sum
             DataRefresh();
             Order orderToCheckOut = Orders.Retrieve(orderID);
             int newCheckID = Checks.NextCheckID();
@@ -73,6 +75,7 @@ namespace RestaurantTablesService.Services
         }
         public void NewCheckOut(int orderID, string clientEmail)
         {
+            //Creates new checkout object and adds it to CheckRepository
             DataRefresh();
             if (orderID != -1)
             {
@@ -92,6 +95,7 @@ namespace RestaurantTablesService.Services
         }
         public void NewCheckOutByTable(int tableID, string clientEmail)
         {
+            //Creates new Checkout object with occupied TableID adds it to CheckRepository
             DataRefresh();
             
             try

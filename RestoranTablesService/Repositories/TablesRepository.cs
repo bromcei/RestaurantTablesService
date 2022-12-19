@@ -36,8 +36,6 @@ namespace RestaurantTablesService.Repositories
             {
                 TableList = JsonSerializer.Deserialize<List<Table>>(jsonString); ;
             }
-
-
         }
         public bool WriteToFile()
         {

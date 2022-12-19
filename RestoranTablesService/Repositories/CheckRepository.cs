@@ -83,7 +83,6 @@ namespace RestaurantTablesService.Repositories
             }
 
         }
-
         public bool NewCheck(Check check)
         {
             CheckList.Add(check);

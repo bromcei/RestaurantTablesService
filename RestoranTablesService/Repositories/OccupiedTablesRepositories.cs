@@ -95,19 +95,6 @@ namespace RestaurantTablesService.Repositories
             OccupiedTablesList.Add(occupiedTable);
             WriteToFile();
             return true;
-            /*
-            if (IsTableFree(tableID) && TablesRepository.Retrieve(tableID).TableSize >= personCount)
-            {
-                OccupiedTable newOccTable = new OccupiedTable(NextOccupiedTableID(), tableID, DateTime.Now, personCount);
-                OccupiedTablesList.Add(newOccTable);
-                WriteToFile();
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-            */
         }
         public bool SetTableFreeByTableID(int tableID)
         {

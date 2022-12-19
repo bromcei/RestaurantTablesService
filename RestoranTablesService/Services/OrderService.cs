@@ -34,6 +34,7 @@ namespace RestaurantTablesService.Services
         }
         public bool NewOrderToTable(int tableID, List<int> foodIDList, List<int> drinkIDList)
         {
+            //Assig order id to occupied table
             DataRefresh();
             OccupiedTable occTable = OccupiedTables.Retrieve(tableID);
               
@@ -53,6 +54,7 @@ namespace RestaurantTablesService.Services
         }
         public bool AddFoodsToTable(int tableID, List<int> foodIDList)
         {
+            //Method to add food to occupied table
             DataRefresh();
             OccupiedTable occTable = OccupiedTables.Retrieve(tableID);
 
@@ -71,6 +73,7 @@ namespace RestaurantTablesService.Services
         }
         public bool AddDrinksToTable(int tableID, List<int> drinkIDList)
         {
+            //Method to add food to occupied table
             DataRefresh();
             OccupiedTable occTable = OccupiedTables.Retrieve(tableID);
 

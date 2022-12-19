@@ -28,6 +28,7 @@ namespace RestaurantTablesService.Services
 
         public List<Table> ListFreeTables()
         {
+            //Method Shows free tables
             DataRefresh();
             List<Table> freeTables = new List<Table>();
             foreach (int tableID in Tables.TableList.Select(table => table.TableID).ToList())
@@ -41,6 +42,7 @@ namespace RestaurantTablesService.Services
         }
         public bool OccupieTable(int tableID, int personCount)
         {
+            //Method occupies free table
             DataRefresh();
             if (Tables.Retrieve(tableID) != null && Tables.Retrieve(tableID).TableSize >= personCount && OccupiedTables.IsTableFree(tableID))
             {
@@ -57,6 +59,7 @@ namespace RestaurantTablesService.Services
         }
         public bool SetTableFree(int tableID)
         {
+            //Method makes occupied table free
             DataRefresh();
             if (Tables.Retrieve(tableID) != null && OccupiedTables.IsTableFree(tableID) == false)
             {
@@ -71,6 +74,7 @@ namespace RestaurantTablesService.Services
         }
         public int RetrieveOrderID(int tableID)
         {
+            //Method returns order ID from occupied table
             DataRefresh();
             if (Tables.Retrieve(tableID) != null && OccupiedTables.IsTableFree(tableID) == false)
             {

@@ -24,7 +24,6 @@ namespace RestaurantTablesService.Repositories
             {
                 FilePath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\Data\\Test\\DrinkMenu.json";
             }
-            //FilePath = "C:\\Users\\tomas.ceida\\source\\repos\\RestoranTablesService\\RestoranTablesService\\Data\\DrinkMenu.json";
             
             try
             {

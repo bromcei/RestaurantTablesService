@@ -33,7 +33,9 @@ namespace FrontEnd
         {
             int selectedRowCount = dataGridView1.Rows.GetRowCount(DataGridViewElementStates.Selected);
             MessageBox.Show($"{selectedRowCount}");
-            if (selectedRowCount > 0)
+            int personCount;
+            string textBoxVal = textBox1.Text;
+            if (selectedRowCount == 1 && int.TryParse(textBoxVal, out personCount))
             {
                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
 
@@ -55,6 +57,11 @@ namespace FrontEnd
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
