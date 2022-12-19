@@ -83,7 +83,7 @@ namespace RestaurantTablesService.Services
 
                 Check newCheck = new Check(newCheckID, orderID, orderToCheckOut.PersonCount, orderToCheckOut.FoodIDList, orderToCheckOut.DrinkIDList, totalOrderSum, totalOrderPrimeSum, clientEmail);
                 Checks.NewCheck(newCheck);
-                orderToCheckOut.CheckedOut = true;
+                Orders.Retrieve(orderID).CheckedOut = true;
                 OccupiedTables.SetTableFreeByOccupiedTableID(orderToCheckOut.OccupiedTableID);
                 Orders.WriteToFile();
                 DataRefresh();
@@ -105,7 +105,7 @@ namespace RestaurantTablesService.Services
 
                 Check newCheck = new Check(newCheckID, orderID, tableTocheckOut.PersonCount, orderToCheckOut.FoodIDList, orderToCheckOut.DrinkIDList, totalOrderSum, totalOrderPrimeSum, clientEmail);
                 Checks.NewCheck(newCheck);
-                orderToCheckOut.CheckedOut = true;
+                Orders.Retrieve(orderID).CheckedOut = true;
                 Orders.WriteToFile();
                 DataRefresh();
             }

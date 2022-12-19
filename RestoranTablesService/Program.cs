@@ -9,26 +9,27 @@ SendCheckCompany SendCheckCompanyService = new SendCheckCompany(env);
 SendCheckClient SendCheckClient = new SendCheckClient(env);
 
 
-/*
-TableSitter.OccupieTable(1, 2);
+
+TableSitter.OccupieTable(2, 4);
 Console.WriteLine("Pasodinimas");
 
 
-OrderService.NewOrderToTable(1, new List<int>() { 1, 1 }, new List<int>());
+OrderService.NewOrderToTable(2, new List<int>() { 1, 2, 3, 4 }, new List<int>());
 
 
 Console.WriteLine("Order ir maistas");
-OrderService.AddDrinksToTable(1, new List<int>() { 2, 2 });
+OrderService.AddDrinksToTable(2, new List<int>() { 3, 2, 2, 1 });
 Console.WriteLine("Gerimai");
-int orderID = TableSitter.RetrieveOrderID(1);
-CheckOutService.NewCheckOut(orderID, "test@gmail.com");
+int orderID = TableSitter.RetrieveOrderID(2);
+CheckOutService.NewCheckOut(orderID, "ap@gmail.com");
 Console.WriteLine("Check out");
 SendCheckClient.CheckSend(orderID);
 SendCheckCompanyService.CheckSend(orderID);
 Console.WriteLine("Check Send");
-*/
+/*
 
 //TableSitter.OccupieTable(1, 2);
 OrderService.NewOrderToTable(1, new List<int>() { 3, 2, 4 }, new List<int>());
 int orderID = TableSitter.RetrieveOrderID(1);
 CheckOutService.NewCheckOut(orderID, "alio@gmail.com");
+*/

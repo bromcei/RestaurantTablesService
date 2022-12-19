@@ -1,0 +1,10 @@
+[
+  {
+    "OrderID": 1,
+    "OccupiedTableID": 1,
+    "PersonCount": 2,
+    "FoodIDList": [ 1, 1 ],
+    "DrinkIDList": [ 2, 2 ],
+    "CheckedOut": true
+  }
+]

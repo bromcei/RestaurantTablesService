@@ -1,19 +1,19 @@
 [
   {
     "DrinkID": 1,
-    "DrinkName": "Pepsikola",
+    "DrinkName": "Pepsikola Test",
     "DrinkPrice": 2.9,
     "DrinkPrimePrice": 1.10
   },
   {
     "DrinkID": 2,
-    "DrinkName": "Gira",
+    "DrinkName": "Gira Test",
     "DrinkPrice": 2.6,
     "DrinkPrimePrice": 0.9
   },
   {
     "DrinkID": 3,
-    "DrinkName": "Sula",
+    "DrinkName": "Sula Test",
     "DrinkPrice": 4.10,
     "DrinkPrimePrice": 2.6
   }

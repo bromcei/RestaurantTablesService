@@ -22,6 +22,7 @@ namespace RestaurantTablesService.Services
             Drinks = new DrinkRepository(Env);
             Foods = new FoodReposiroty(Env);
             Checks = new CheckRepository(Env);
+
         }
         public void DataRefresh()
         {
@@ -52,11 +53,12 @@ namespace RestaurantTablesService.Services
                 </html>
                 ";
 
-            string HTMLTable = "";
+            
             Check currCheck = Checks.RetrieveByOrderID(orderID);
             List<int> foodIds = currCheck.FoodIDList;
             List<int> drinkIds = currCheck.DrinkIDList;
 
+            string HTMLTable = "";
             foreach (int foodID  in foodIds)
             {
 

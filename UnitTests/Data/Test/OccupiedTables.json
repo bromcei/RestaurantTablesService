@@ -1,0 +1,10 @@
+[
+  {
+    "OccupiedTableID": 1,
+    "TableID": 1,
+    "DateTime": "2022-12-19T10:11:30.4369218+02:00",
+    "PersonCount": 2,
+    "OrderID": 1,
+    "IsOccupied": false
+  }
+]

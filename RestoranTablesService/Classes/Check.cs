@@ -10,7 +10,6 @@ namespace RestaurantTablesService.Classes
     {
         public int CheckID { get; set; }
         public int OrderID { get; set; }
-        public int TableID { get; set; }
         public int PersonCount { get; set; }
         public List<int> FoodIDList { get; }
         public List<int> DrinkIDList { get; }
@@ -33,5 +32,6 @@ namespace RestaurantTablesService.Classes
             ClientEmail = clientEmail;
             CheckDate = DateTime.Now;
         }
+
     }
 }
