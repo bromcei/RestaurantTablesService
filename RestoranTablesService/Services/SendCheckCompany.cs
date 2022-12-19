@@ -31,6 +31,7 @@ namespace RestaurantTablesService.Services
         }
         public string CheckPrint(int orderID)
         {
+            //Creates company's check report
             DataRefresh();
             string HTMLUpperPart = $@"
                 <!DOCTYPE html>
@@ -95,6 +96,7 @@ namespace RestaurantTablesService.Services
         }
         public void CheckSend(int orderID)
         {
+            //Sends company's check report
             DataRefresh();
             string emailString = CheckPrint(orderID);
             string filePath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + $"\\Reports\\CompanyChecks\\{orderID}_CompanyCheck.html";

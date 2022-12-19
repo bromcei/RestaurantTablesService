@@ -33,6 +33,7 @@ namespace RestaurantTablesService.Services
 
         public string CheckPrint(int orderID)
         {
+            //Creates client check report
             DataRefresh();
             string HTMLUpperPart = $@"
                 <!DOCTYPE html>
@@ -93,6 +94,7 @@ namespace RestaurantTablesService.Services
         }
         public void CheckSend(int orderID)
         {
+            //Sends client check report
             DataRefresh();
             string emailString = CheckPrint(orderID);
             string email = Checks.RetrieveByOrderID(orderID).ClientEmail;
