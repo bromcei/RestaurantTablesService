@@ -32,23 +32,13 @@ namespace FrontEnd
         private void button1_Click(object sender, EventArgs e)
         {
             int selectedRowCount = dataGridView1.Rows.GetRowCount(DataGridViewElementStates.Selected);
-            MessageBox.Show($"{selectedRowCount}");
             int personCount;
             string textBoxVal = textBox1.Text;
             if (selectedRowCount == 1 && int.TryParse(textBoxVal, out personCount))
             {
                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
-
-                for (int i = 0; i < selectedRowCount; i++)
-                {
-                    sb.Append("Row: ");
-                    sb.Append("Table ID: ");
-                    sb.Append(dataGridView1.SelectedRows[i].Cells["TableID"].Value);
-                    sb.Append(Environment.NewLine);
-                }
-
                 sb.Append("Total: " + selectedRowCount.ToString());
-                MessageBox.Show(sb.ToString(), "Selected Rows");
+                MessageBox.Show($"Occupie table {dataGridView1.SelectedRows[0].Cells["TableID"].Value} with {personCount}?");
                 dataGridView1.Refresh();
             }
 
