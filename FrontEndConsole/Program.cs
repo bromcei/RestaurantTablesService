@@ -11,18 +11,18 @@ SendCheckClient SendCheckClient = new SendCheckClient(env);
 
 
 
-TableSitter.OccupieTable(2, 4);
+TableSitter.OccupieTable(1, 3);
 Console.WriteLine("Pasodinimas");
 
 
-OrderService.NewOrderToTable(2, new List<int>() { 1, 2, 3, 4 }, new List<int>());
+OrderService.NewOrderToTable(1, new List<int>() { 3, 1, 2, 4 }, new List<int>());
 
 
 Console.WriteLine("Order ir maistas");
-OrderService.AddDrinksToTable(2, new List<int>() { 3, 2, 2, 1 });
+OrderService.AddDrinksToTable(1, new List<int>() { 2, 2, 2, 3 });
 Console.WriteLine("Gerimai");
-int orderID = TableSitter.RetrieveOrderID(2);
-CheckOutService.NewCheckOut(orderID, "ap@gmail.com");
+int orderID = TableSitter.RetrieveOrderID(1);
+CheckOutService.NewCheckOut(orderID, "client@gmail.com");
 Console.WriteLine("Check out");
 SendCheckClient.CheckSend(orderID);
 SendCheckCompanyService.CheckSend(orderID);
